@@ -29,9 +29,19 @@ function App() {
     return (
         <div className="root">
             <div className="chat">
-                {state.map(item => (
-                    <OutputCard key={item.content}>{isValidHttpUrl(item.content) ? <img style={{ height: 200, width: 200 }} src={item.content} /> : <div>{item.content}</div>}</OutputCard>
-                ))}
+                {state.map(item => {
+                    const urlInImage = item.content.match(/\bhttps?:\/\/\S+/gi)?.[0];
+                    const isValidImage = urlInImage && isValidHttpUrl(urlInImage);
+
+                    return (
+                        <OutputCard key={item.content}>
+                            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                <span>{item.content}</span>
+                                {isValidImage && <img style={{ height: 200, width: 200 }} src={urlInImage} />}
+                            </div>
+                        </OutputCard>
+                    );
+                })}
             </div>
             <Textarea value={text} onChange={(_, val) => setText(val.value)} onSubmit={onSubmit} placeholder="Ask a question or request, or type '/' for suggestions" />
         </div>
