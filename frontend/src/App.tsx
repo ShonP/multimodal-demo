@@ -6,6 +6,9 @@ import { useMutation } from '@tanstack/react-query';
 import { chatApi } from './services/api';
 import { useState } from 'react';
 import { isValidHttpUrl } from './utils/isValidHttpUrl';
+import openAIIcon from './assets/openai.png';
+import meIcon from './assets/me.webp';
+
 const initialChat = [{ role: 'system', content: 'You are a helpful assistant.' }];
 
 function App() {
@@ -31,7 +34,7 @@ function App() {
     return (
         <div className="root">
             <LatencyWrapper style={{ padding: 0, flex: 1 }}>
-                <LatencyLoader progress={{ value: isLoading ? undefined : 0 }} header="">
+                <LatencyLoader className={isLoading ? 'loading' : ''} progress={{ value: isLoading ? undefined : 0 }} header="">
                     <div className="chat">
                         {state
                             .filter(item => item.role !== 'system')
@@ -40,7 +43,8 @@ function App() {
                                 const isValidImage = urlInImage && isValidHttpUrl(urlInImage);
 
                                 return (
-                                    <OutputCard key={idx}>
+                                    <OutputCard style={{ display: 'flex', flexDirection: 'row', gap: 12 }} key={idx}>
+                                        <img style={{ width: 24, height: 24 }} src={idx % 2 ? openAIIcon : meIcon} />
                                         <div style={{ display: 'flex', flexDirection: 'column' }}>
                                             <span>{item.content}</span>
                                             {isValidImage && <img style={{ height: 200, width: 200 }} src={urlInImage} />}

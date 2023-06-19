@@ -68,3 +68,11 @@ body {
 .fai-LatencyWrapper {
     overflow: auto;
 }
+
+.fui-ProgressBar {
+    display: none !important;
+}
+
+.loading > div.fui-ProgressBar {
+    display: block !important;
+}
