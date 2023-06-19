@@ -1,11 +1,13 @@
 import axios from 'axios';
 import { IChat } from '../@types/chat';
 
-const url = 'http://localhost:7071/api';
+const baseURL = 'http://localhost:7071/api';
 
-export const api = axios.create({ baseURL: `${url}/api/v1` });
+const api = axios.create({ baseURL });
 
-export const chat = async ({ chat }: { chat: [IChat] }) =>
-    api.post(`/chat`, {
-        chat,
-    });
+export const chatApi = async ({ chat }: { chat: IChat[] }) =>
+    api
+        .post(`/chat`, {
+            chat,
+        })
+        .then(res => res.data);
