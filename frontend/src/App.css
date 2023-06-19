@@ -1,51 +1,60 @@
 body {
-  height: 100vh;
-  width: 100vw;
-  box-sizing: border-box;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .root {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  overflow: auto;
-  background: rgba(52, 53, 65, 1);
-  gap: 16px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: auto;
+    background: rgba(52, 53, 65, 1);
+    gap: 16px;
 }
 
 .fai-Textarea {
-  margin-top: auto !important;
-  max-width: initial !important;
-  width: calc(100% - 35px) !important;
-  margin: 16px !important;
-  background: rgba(68, 70, 84, 1) !important;
-  color: white !important;
+    margin-top: auto !important;
+    max-width: initial !important;
+    width: calc(100% - 35px) !important;
+    margin: 16px !important;
+    background: rgba(68, 70, 84, 1) !important;
+    color: white !important;
 }
 
 .fai-Textarea textarea {
-  color: white !important;
+    color: white !important;
 }
 .fai-Textarea textarea::placeholder {
-  color: white;
+    color: white;
 }
 
 .fai-Textarea__count {
-  color: white !important;
+    color: white !important;
 }
 
 .chat {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  overflow: auto;
-  gap: 16px;
-  padding: 16px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    overflow: auto;
+    gap: 16px;
+    padding: 16px;
 }
 
 .fai-OutputCard {
-  background: rgba(68, 70, 84, 1) !important;
-  color: white !important;
+    background: rgba(68, 70, 84, 1) !important;
+    color: white !important;
+}
+
+.fai-LatencyLoader__header {
+    display: none;
+}
+
+.fai-LatencyLoader {
+    width: 100%;
+    flex: 1;
 }
