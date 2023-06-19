@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { OutputCard } from "@fluentai/react-copilot";
+import "./App.css";
 
+import { Textarea } from "@fluentai/textarea";
 function App() {
-  const [count, setCount] = useState(0)
-
+  
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="root">
+      <div className="chat">
+        <OutputCard>
+          <div>
+            <div>
+              (Content is not styled) Mona said that Summit Center project is
+              set to start pre-construction planning and site preparation for
+              the new arena in Atlanta April 2023. The project is set to go into
+              the following year.
+            </div>
+            <br />
+            <div>Summit Center Estimated Timeline:</div>
+            <ul style={{ marginBottom: 0 }}>
+              <li>
+                April-June: Pre-construction planning and site preparation
+              </li>
+              <li>July-September: Construction begins</li>
+              <li>October-December: structural work</li>
+              <li>
+                January - April (Next Year): Completion of finishes and fixtures
+              </li>
+              <li>
+                May - August (Next Year): Commissioning and testing of systems,
+                final site work, and obtaining final approvals for the arena.
+              </li>
+            </ul>
+          </div>
+        </OutputCard>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <Textarea
+        onSubmit={(text) => console.log({ text })}
+        placeholder="Ask a question or request, or type '/' for suggestions"
+      />
+    </div>
+  );
 }
 
-export default App
+export default App;

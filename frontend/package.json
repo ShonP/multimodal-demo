@@ -10,6 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fluentai/react-copilot": "^0.3.0",
+    "@fluentai/textarea": "^0.1.2",
+    "@fluentui/react-components": "^9.21.0",
+    "@fluentui/react-icons": "^2.0.204",
+    "axios": "^1.3.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
