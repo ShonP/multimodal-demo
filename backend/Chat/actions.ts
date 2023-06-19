@@ -23,8 +23,8 @@ export const chat = async messages => {
 
 export const createImage = async lastMessage => {
     const imagePromptResponse = await openai.createChatCompletion({
-        model: 'gpt-3.5-turbo',
-        messages: [{ role: 'system', content: 'You are a helpful assistant.' }, { role: 'user', content: createImagePrompt }, lastMessage],
+        model: 'gpt-4',
+        messages: [{ role: 'system', content: createImagePrompt }, lastMessage],
     });
     const imageDescription = imagePromptResponse.data['choices'][0]['message']['content'].trim();
     const imageResponse = await openai.createImage({
@@ -34,7 +34,7 @@ export const createImage = async lastMessage => {
     });
     const imageUrl = imageResponse.data.data[0].url;
 
-    return { role: 'assistant', content: imageUrl };
+    return { role: 'assistant', content: `description:${imageDescription} imageUrl:${imageUrl}` };
 };
 
 export const describeImage = async lastMessage => {

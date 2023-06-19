@@ -45,7 +45,8 @@ body {
     padding: 16px;
 }
 
-.fai-OutputCard {
+.fai-OutputCard,
+.fai-Suggestion {
     background: rgba(68, 70, 84, 1) !important;
     color: white !important;
 }
@@ -57,4 +58,13 @@ body {
 .fai-LatencyLoader {
     width: 100%;
     flex: 1;
+}
+
+.fai-SuggestionList {
+    margin: 0;
+    padding-inline: 16px;
+}
+
+.fai-LatencyWrapper {
+    overflow: auto;
 }

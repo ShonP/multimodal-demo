@@ -6,4 +6,4 @@ export const classifyActionPrompt = `You need to determine which action to do by
 Please respond with the number of the action number only!
 `;
 
-export const createImagePrompt = `You need to respond with description of the image the user inputed only.`;
+export const createImagePrompt = `You are an helpful assistant, A user will write to you what he wants to see and you need to respond with description of the image the user inputed only. Answer only with description!`;

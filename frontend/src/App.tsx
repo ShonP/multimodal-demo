@@ -1,4 +1,4 @@
-import { OutputCard } from '@fluentai/react-copilot';
+import { OutputCard, Suggestion, SuggestionList } from '@fluentai/react-copilot';
 import './App.css';
 import { LatencyLoader, LatencyWrapper } from '@fluentai/react-copilot';
 import { Textarea, TextareaSubmitEvents, TextareaValueData } from '@fluentai/textarea';
@@ -25,29 +25,38 @@ function App() {
             chat: [...state, { role: 'user', content: text.value }],
         });
     };
-
+    const handleSuggestion = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.currentTarget.textContent && setText(e.currentTarget.textContent);
+    };
     return (
         <div className="root">
             <LatencyWrapper style={{ padding: 0, flex: 1 }}>
                 <LatencyLoader progress={{ value: isLoading ? undefined : 0 }} header="">
                     <div className="chat">
-                        {state.map(item => {
-                            const urlInImage = item.content.match(/\bhttps?:\/\/\S+/gi)?.[0];
-                            const isValidImage = urlInImage && isValidHttpUrl(urlInImage);
+                        {state
+                            .filter(item => item.role !== 'system')
+                            .map((item, idx) => {
+                                const urlInImage = item.content.match(/\bhttps?:\/\/\S+/gi)?.[0];
+                                const isValidImage = urlInImage && isValidHttpUrl(urlInImage);
 
-                            return (
-                                <OutputCard key={item.content}>
-                                    <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                        <span>{item.content}</span>
-                                        {isValidImage && <img style={{ height: 200, width: 200 }} src={urlInImage} />}
-                                    </div>
-                                </OutputCard>
-                            );
-                        })}
+                                return (
+                                    <OutputCard key={idx}>
+                                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                            <span>{item.content}</span>
+                                            {isValidImage && <img style={{ height: 200, width: 200 }} src={urlInImage} />}
+                                        </div>
+                                    </OutputCard>
+                                );
+                            })}
                     </div>
                 </LatencyLoader>
             </LatencyWrapper>
-
+            <SuggestionList>
+                <Suggestion onClick={handleSuggestion}>Show me an image of a dog</Suggestion>
+                <Suggestion onClick={handleSuggestion}>How do I write a Contoso project brief?</Suggestion>
+                <Suggestion onClick={handleSuggestion}>What are the OKRs this quarter?</Suggestion>
+                <Suggestion onClick={handleSuggestion}>Brainstorm ideas for a virtual team bonding activity</Suggestion>
+            </SuggestionList>
             <Textarea value={text} onChange={(_, val) => setText(val.value)} onSubmit={onSubmit} placeholder="Ask a question or request, or type '/' for suggestions" />
         </div>
     );
